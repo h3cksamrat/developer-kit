@@ -7,8 +7,26 @@
   <title>Developer Kit</title>
   <link rel="stylesheet" href="index.css"/>
   <script src="index.js" defer></script>
+  <script src="js/titleBar.js"></script>
 </head>
 <body>
-  
+  <div class="mainApp">
+    <div class="topBar">
+        <div class="title">
+          <img class="topBarLogoImg" src="img/titleBar-logo.png">
+          <p class="titleText">Developer's Kit v1.0</p>
+        </div>
+        <div class="titleBarBtns">
+          <button id="minimizeBtn" class="topBtn minimizeBtn" title="Minimize"></button>
+          <button id="maxResBtn" class="topBtn maximizeBtn" title="Maximize"></button>
+          <button id="closeBtn" class="topBtn closeBtn" title="Close"></button>
+        </div>
+    </div>
+  </div>
+  <div class="contentArea">
+    <div class="contentPages">
+      This is the body part.
+    </div>
+  </div>
 </body>
 </html>
