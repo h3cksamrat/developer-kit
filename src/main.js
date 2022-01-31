@@ -1,5 +1,6 @@
-const { app, BrowserWindow } = require('electron');
+const { app, BrowserWindow, ipcMain } = require('electron');
 const path = require('path');
+const ipc = ipcMain;
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require('electron-squirrel-startup')) {
@@ -12,9 +13,13 @@ const createWindow = () => {
   const mainWindow = new BrowserWindow({
     width: 800,
     height: 600,
+    minWidth: 800,
+    minHeight: 600,
+    frame: false,
     webPreferences: {
       // can work with nodejs modules
       nodeIntegration: true,
+      contextIsolation: false,
     },
   });
 
@@ -23,6 +28,48 @@ const createWindow = () => {
 
   // Open the DevTools.
   mainWindow.webContents.openDevTools();
+  
+  //Titlebar
+
+  //Minimize Button
+  ipc.on('minimizeApp', ()=>{
+    console.log('Clicked on the minimize button.');
+    mainWindow.minimize();
+  })
+
+  //Close Button
+  ipc.on('closeApp', ()=>{
+    console.log('Clicked on the close button.');
+    mainWindow.close();
+  })
+
+  //Maximize Restore Button
+  ipc.on('maximizeRestoreApp', ()=>{
+    if(mainWindow.isMaximized()){
+      console.log("Restored");
+      mainWindow.restore();
+    }
+    else{
+      console.log("Clicked on Maximize");
+      mainWindow.maximize();
+    }
+  })
+
+  mainWindow.on('maximize', ()=>{
+    mainWindow.webContents.send('isMaximized');
+  })
+
+  mainWindow.on('unmaximize', ()=>{
+    mainWindow.webContents.send('isRestored');
+  })
+
+  //Maximize Button
+  ipc.on('maximizeApp', ()=>{
+    console.log('Clicked on the restore/maximize button.');
+    mainWindow.maximize();
+  })
+
+
 };
 
 // This method will be called when Electron has finished
