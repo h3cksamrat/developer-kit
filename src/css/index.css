@@ -1,17 +1,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800&display=swap');
 
-body {
-  font-family: 'Inter', sans-serif;
+body, html {
+  font-family: 'Inter', sans-serif !important;
   margin: 0;
   padding: 0;
-  font-size: 0.75rem;
-  color: white;
-  background-color: #16161b;
+  font-size: 0.9rem !important;
+  color: white !important;
+  background-color: #16161b !important;
+  overflow: hidden;
 }
+
+/* Titlebar of the application */
 
 .mainApp{
   width: 100%;
-  height: 100%;
+  height: 47px;
   overflow: hidden;
   border: 1px solid #343B48;
   background-color: #1B1D23;
@@ -21,11 +24,11 @@ body {
 .mainApp > .topBar{
   height: 40px;
   -webkit-user-select: none;
+  -webkit-app-region: drag;
 }
 
 .title{
   margin-left: 17px;
-  -webkit-app-region: drag;
   float: left;
   display: inline;
   margin-top: -8px;
@@ -46,11 +49,11 @@ body {
   vertical-align: middle !important;
 }
 
-
 .topBar > .titleBarBtns{
   height: 40px;
   float: right;
   display: inline;
+  -webkit-app-region: no-drag;
 }
 
 .titleBarBtns > .topBtn{
@@ -73,17 +76,60 @@ body {
 }
 
 .titleBarBtns > .minimizeBtn{
-  background-image: url('img/minimize.png');
+  background-image: url('../img/minimize.png');
 }
 
 .titleBarBtns > .maximizeBtn{
-  background-image: url('img/maximize.png');
+  background-image: url('../img/maximize.png');
 }
 
 .titleBarBtns > .restoreBtn{
-  background-image: url('img/restore.png');
+  background-image: url('../img/restore.png');
 }
 
 .titleBarBtns > .closeBtn{
-  background-image: url('img/close.png');
+  background-image: url('../img/close.png');
+}
+
+
+/* Homepage */
+
+.mainBodyWrapper{
+  background-image: url('../img/background.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 580px;
+}
+
+.contentArea{
+  margin-top: 30px;
+}
+
+.contentPages{
+  margin: 0 auto;
+  width: 94%;
+}
+
+.navbar-brand img{
+  width: 170px;
+}
+
+.navigationLinks{
+  margin-top: 10px;
+}
+
+.connectBtnCont{
+  display: inline-block;
+}
+
+.connectBtnCont .connectBtn{
+  background-color: #2ad9a6;
+  outline: none;
+  border: none;
+  font-size: 0.7rem;
+  font-weight: 500;
+  padding: 10px 27px;
+  color: white;
+  border-radius: 8px;
 }
