@@ -11,10 +11,10 @@ if (require('electron-squirrel-startup')) {
 const createWindow = () => {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
-    width: 800,
-    height: 600,
-    minWidth: 960,
-    minHeight: 600,
+    width: 1000,
+    height: 700,
+    minWidth: 1000,
+    minHeight: 700,
     frame: false,
     webPreferences: {
       // can work with nodejs modules
@@ -33,13 +33,11 @@ const createWindow = () => {
 
   //Minimize Button
   ipc.on('minimizeApp', ()=>{
-    console.log('Clicked on the minimize button.');
     mainWindow.minimize();
   })
 
   //Close Button
   ipc.on('closeApp', ()=>{
-    console.log('Clicked on the close button.');
     mainWindow.close();
   })
 
@@ -50,7 +48,6 @@ const createWindow = () => {
       mainWindow.restore();
     }
     else{
-      console.log("Clicked on Maximize");
       mainWindow.maximize();
     }
   })
@@ -65,7 +62,6 @@ const createWindow = () => {
 
   //Maximize Button
   ipc.on('maximizeApp', ()=>{
-    console.log('Clicked on the restore/maximize button.');
     mainWindow.maximize();
   })
 
