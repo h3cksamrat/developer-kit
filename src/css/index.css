@@ -272,7 +272,6 @@ img{
 .dropdown-container {
   display: none;
   background-color: #21232a;
-  padding-left: 8px;
 }
 
 .fa-caret-down {
@@ -352,4 +351,21 @@ a:focus, a:hover{
 
 .stepsCont ol li{
   padding-left: 10px;
+}
+
+
+.activeSubMenu{
+  background-color: #353840 !important;
+  color: white !important;
+}
+
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  margin-left: 320px; 
+  border-top: none;
+}
+
+.submenu:focus{
+  color: white !important;
 }
