@@ -111,3 +111,66 @@ function searchServices() {
     });
   });
 }
+
+
+function hideServMain(){
+  let mainElement = document.getElementById("mainSecDiv");
+  mainElement.style.display = "none";
+}
+
+function subMenus(evt, cityName) {
+  var i, tabcontent;
+
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+
+  document.getElementById(cityName).style.display = "block";
+  hideServMain();
+}
+
+function activeSMenu1(){
+  let menuElement1 = document.getElementById("submenu1");
+  let menuElement2 = document.getElementById("submenu2");
+  let menuElement3 = document.getElementById("submenu3");
+  if (menuElement1.classList.contains("activeSubMenu")){
+    return;
+  }
+  else{
+    menuElement1.classList.add("activeSubMenu");
+    menuElement2.classList.remove("activeSubMenu");
+    menuElement3.classList.remove("activeSubMenu");
+  }
+  
+}
+
+function activeSMenu2(){
+  let menuElement1 = document.getElementById("submenu1");
+  let menuElement2 = document.getElementById("submenu2");
+  let menuElement3 = document.getElementById("submenu3");
+  if (menuElement2.classList.contains("activeSubMenu")){
+    return;
+  }
+  else{
+    menuElement2.classList.add("activeSubMenu");
+    menuElement3.classList.remove("activeSubMenu");
+    menuElement1.classList.remove("activeSubMenu");
+  }
+  
+}
+
+function activeSMenu3(){
+  let menuElement1 = document.getElementById("submenu1");
+  let menuElement2 = document.getElementById("submenu2");
+  let menuElement3 = document.getElementById("submenu3");
+  if (menuElement3.classList.contains("activeSubMenu")){
+    return;
+  }
+  else{
+    menuElement3.classList.add("activeSubMenu");
+    menuElement1.classList.remove("activeSubMenu");
+    menuElement2.classList.remove("activeSubMenu");
+  }
+  
+}
