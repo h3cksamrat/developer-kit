@@ -19,6 +19,10 @@ Eg:
 git branch fix/rajina/responsivenessOfNavbar
 git checkout fix/rajina/responsivenessOfNavbar
 ```
+or
+```git
+git checkout -b <your-new-branch> <branch-you-want-to-make-new-branch-from>
+```
 
 3. How to push to Github?
 ```git
