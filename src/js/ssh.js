@@ -29,9 +29,19 @@ const sshGenerate = () => {
   }
 };
 
-const getPublicSSHKey = () => syncTerminal('cat ~/.ssh/id_rsa.pub');
+const getPublicSSHKey = () => syncTerminal(`cat "${homedir()}/.ssh/id_rsa.pub"`);
+
+const checkAvailabilityOfSSH = () => {
+  const output = syncTerminal(`ls "${homedir()}/.ssh/"`);
+  if (output.indexOf('No such file or directory') == -1) {
+    if (output.indexOf('id_') !== -1) return { message: 'ssh key present', code: 1 };
+    return { message: 'ssh key not present', code: 0 };
+  }
+  return { message: 'ssh key not present', code: 0 };
+};
 
 module.exports = {
   sshGenerate,
   getPublicSSHKey,
+  checkAvailabilityOfSSH,
 };
