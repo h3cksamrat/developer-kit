@@ -369,3 +369,86 @@ a:focus, a:hover{
 .submenu:focus{
   color: white !important;
 }
+
+/* SSH stuffs*/
+
+#SSH .menuDesc{
+  color: #50505b;
+  margin-top: -2px;
+}
+
+.sshCont{
+  margin-top: 20px;
+  width: 85%;
+}
+
+.descCont{
+  color: #90909a;
+  padding: 20px 25px;
+  border-radius: 15px;
+  box-shadow: insets 1px 0px 10px 0px #333338;
+  -webkit-box-shadow: inset 1px 0px 10px 0px #333338;
+  -moz-box-shadow: inset 1px 0px 10px 0px #333338;
+  -o-box-shadow: inset 1px 0px 10px 0px #333338;
+  background-color: #1f1f25 ;
+  margin-top: 10px;
+}
+
+.actionBtnCont{
+  margin-top: 30px;
+}
+
+.sshActionBtn{
+  color: white;
+  background-color: #2ad9a6;
+  width: 100%;
+  padding: 15px 35px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+}
+
+.clipboardCont{
+  text-align: center;
+  margin-top: 30px;
+}
+
+#clipBoard{
+  background-color: #1f1f25;
+  border: none;
+  outline: none;
+  padding: 15px 24px;
+  width: 100%;
+  margin: 0 auto;
+  border-radius: 10px;
+  height: 100px !important;
+}
+
+#clipBoard::-webkit-scrollbar{
+  width: 7px;
+}
+
+#clipBoard::-webkit-scrollbar-track{
+  background-color: #64646a;
+  width: 7px;
+}
+
+#clipBoard::-webkit-scrollbar-thumb {
+  background: #90909a;
+  border-radius: 10px;
+}
+
+#clipBoard::placeholder{
+  color: #90909a;
+}
+
+.copyBtn{
+  display: block;
+  text-align: center;
+  margin: 15px auto 0 auto;
+  outline: none;
+  border: none;
+  padding: 15px 30px;
+  border-radius: 10px;
+  background-color: #1f1f25;
+}

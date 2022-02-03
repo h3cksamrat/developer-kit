@@ -10,6 +10,7 @@
   <script>window.$ = window.jQuery = require('./js/jquery.min.js');</script>
   <script src="js/titleBar.js"></script>
   <script src="index.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.10/clipboard.min.js"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://kit.fontawesome.com/e4d30ea956.js" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
@@ -128,7 +129,23 @@
 </div>
 <div id="SSH" class="tabcontent">
   <h3>Setup SSH</h3>
-  <p>This is container for SSH</p>
+  <p class="menuDesc">Generate SSH to connect your device with Github.</p>
+  <div class="sshCont">
+    <div class="descCont">
+      When working with a GitHub repository, you'll often need to identify yourself to GitHub using your username and password. An SSH key is an alternate way to identify yourself that doesn't require you to enter you username and password every time.
+    </div>
+    <div class="actionBtnCont">
+      <button id="gensshBtn" onclick="controlSSH();" class="sshActionBtn">
+        Generate SSH Key
+      </button>
+    </div>
+    <div class="clipboardCont">
+      <textarea id="clipBoard" placeholder="Your SSH Key" readonly></textarea>
+      <button class="copyBtn" data-clipboard-target="#clipBoard">
+        <i style="margin-right: 5px;" class="far fa-copy"></i>Copy to clipboard
+      </button>
+    </div>
+  </div>
 </div>
 <div id="clone" class="tabcontent">
   <h3>Clone</h3>
@@ -138,5 +155,8 @@
   <h3>Commit</h3>
   <p>This is container for commit/</p>
 </div>
+<script>
+  new ClipboardJS('.copyBtn');
+</script>
 </body>
 </html>
