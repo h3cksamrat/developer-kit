@@ -129,48 +129,14 @@ function subMenus(evt, cityName) {
   document.getElementById(cityName).style.display = "block";
   hideServMain();
 }
+const activeSubMenu = (event) => {
+  const subMenus = document.getElementsByClassName('tablinks');
+  if (event.target.classList.contains('activeSubMenu')) return;
+  Array.from(subMenus).map((subMenu) => {
+    subMenu.classList.remove('activeSubMenu');
+  });
 
-function activeSMenu1(){
-  let menuElement1 = document.getElementById("submenu1");
-  let menuElement2 = document.getElementById("submenu2");
-  let menuElement3 = document.getElementById("submenu3");
-  if (menuElement1.classList.contains("activeSubMenu")){
-    return;
-  }
-  else{
-    menuElement1.classList.add("activeSubMenu");
-    menuElement2.classList.remove("activeSubMenu");
-    menuElement3.classList.remove("activeSubMenu");
-  }
-  
-}
-
-function activeSMenu2(){
-  let menuElement1 = document.getElementById("submenu1");
-  let menuElement2 = document.getElementById("submenu2");
-  let menuElement3 = document.getElementById("submenu3");
-  if (menuElement2.classList.contains("activeSubMenu")){
-    return;
-  }
-  else{
-    menuElement2.classList.add("activeSubMenu");
-    menuElement3.classList.remove("activeSubMenu");
-    menuElement1.classList.remove("activeSubMenu");
-  }
-  
-}
-
-function activeSMenu3(){
-  let menuElement1 = document.getElementById("submenu1");
-  let menuElement2 = document.getElementById("submenu2");
-  let menuElement3 = document.getElementById("submenu3");
-  if (menuElement3.classList.contains("activeSubMenu")){
-    return;
-  }
-  else{
-    menuElement3.classList.add("activeSubMenu");
-    menuElement1.classList.remove("activeSubMenu");
-    menuElement2.classList.remove("activeSubMenu");
-  }
-  
-}
+  event.target.classList.contains('tablinks')
+    ? event.target.classList.add('activeSubMenu')
+    : event.target.parentElement.classList.add('activeSubMenu');
+};
