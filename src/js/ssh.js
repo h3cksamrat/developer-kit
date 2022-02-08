@@ -11,7 +11,7 @@ const sshGenerate = () => {
   ];
   const sshGenAndAddCommandsMAC = [
     `ssh-keygen -t rsa -b 4096 -f "${homedir()}/.ssh/id_rsa" -P "" -C ${hostname()}`,
-    'echo -e "Host *\n\tIgnoreUnknown UseKeychain\n\tAddKeysToAgent yes\n\tIdentityFile ~/.ssh/id_rsa" > "${homedir()}/.ssh/config"',
+    `echo -e "Host *\n\tIgnoreUnknown UseKeychain\n\tAddKeysToAgent yes\n\tIdentityFile ~/.ssh/id_rsa" > "${homedir()}/.ssh/config"`,
     `eval "$(ssh-agent -s)" && ssh-add "${homedir()}/.ssh/id_rsa"`,
   ];
   try {
