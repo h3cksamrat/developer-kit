@@ -1,4 +1,4 @@
-const { syncTerminal, getCurrentPlatform } = require('./terminal');
+const { syncTerminal, getCurrentPlatform } = require('../terminal');
 const { homedir, hostname } = require('os');
 /**
  * Generates SSH Key pair
@@ -32,28 +32,4 @@ const sshGenerate = () => {
   }
 };
 
-const getPublicSSHKey = () => syncTerminal(`cat "${homedir()}/.ssh/id_rsa.pub"`);
-
-const checkAvailabilityOfSSH = () => {
-  const output = syncTerminal(`ls "${homedir()}/.ssh/"`);
-  if (output.indexOf('No such file or directory') == -1) {
-    if (output.indexOf('id_') !== -1) return { message: 'ssh key present', isPresent: true };
-    return { message: 'ssh key not present', isPresent: false };
-  }
-  return { message: 'ssh key not present', isPresent: false };
-};
-
-const sshSetup = () => {
-  if (!checkAvailabilityOfSSH()) {
-    sshGenerate();
-    return getPublicSSHKey();
-  }
-  return getPublicSSHKey();
-};
-
-module.exports = {
-  sshGenerate,
-  getPublicSSHKey,
-  checkAvailabilityOfSSH,
-  sshSetup,
-};
+module.exports = sshGenerate;
