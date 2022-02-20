@@ -9,7 +9,6 @@ const cardPadding3= document.getElementById("cardPadding3");
 const sidebar = document.getElementsByClassName("sidebarMenus");
 
 ipc.on('isMaximized', ()=>{
-    theMaximize.style.width = "220px";
     theHead.style.fontSize = "3rem";
     recHead.style.marginTop = "150px";
     theCol.style.marginTop = "57px";
@@ -111,3 +110,41 @@ function searchServices() {
     });
   });
 }
+
+
+function hideServMain(){
+  let mainElement = document.getElementById("mainSecDiv");
+  mainElement.style.display = "none";
+}
+
+function subMenus(evt, cityName) {
+  var i, tabcontent;
+
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+
+  document.getElementById(cityName).style.display = "block";
+  hideServMain();
+}
+const activeSubMenu = (event) => {
+  const subMenus = document.getElementsByClassName('tablinks');
+  if (event.target.classList.contains('activeSubMenu')) return;
+  Array.from(subMenus).map((subMenu) => {
+    subMenu.classList.remove('activeSubMenu');
+  });
+
+  event.target.classList.contains('tablinks')
+    ? event.target.classList.add('activeSubMenu')
+    : event.target.parentElement.classList.add('activeSubMenu');
+};
+
+const path = require('path');
+const { sshSetup } = require(path.join(__dirname, '/js/ssh'));
+
+const controlSSH = () => {
+  const genSSH = document.getElementById('clipBoard');
+  const publicKey = sshSetup();
+  genSSH.innerHTML = publicKey;
+};
