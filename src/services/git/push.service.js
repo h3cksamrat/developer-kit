@@ -1,5 +1,5 @@
-const { syncTerminal } = require('../terminal');
-const { isObjectEmpty } = require('../../utils');
+const { APIResponse } = require('../../utils');
+const { asyncTerminal } = require('../terminal');
 
 /**
  * Git push
@@ -18,10 +18,16 @@ const push = (
   pushOptions = {}
 ) => {
   let pushCmd = `git push ${pushInfo.remoteUrl} ${pushInfo.branch}`;
-  if (isObjectEmpty(pushOptions)) return syncTerminal(pushCmd);
   if (pushOptions.force) {
     pushCmd += ' -f';
   }
-  return syncTerminal(pushCmd);
+  const { stdout, stderr } = await asyncTerminal(pushCmd);
+  if (stderr) {
+    const error = stderr.toString();
+    console.error(error);
+    return APIResponse(error, true);
+  }
+  const output = stdout.toString();
+  return APIResponse(output);
 };
 module.exports = push;

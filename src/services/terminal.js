@@ -23,8 +23,12 @@ const getCurrentPlatform = () => platforms[process.platform];
  * @returns {Promise<Object>}
  */
 const asyncTerminal = async (cmd, options) => {
-  const { stdout, stderr } = await exec(cmd, options);
-  return { stdout, stderr };
+  try {
+    const { stdout, stderr } = await exec(cmd, options);
+    return { stdout, stderr, error: false };
+  } catch (err) {
+    return { stderr: err, error: true };
+  }
 };
 
 /**

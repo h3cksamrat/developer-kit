@@ -1,9 +1,16 @@
-const { syncTerminal } = require("../terminal")
+const { APIResponse } = require('../../utils');
+const { asyncTerminal } = require('../terminal');
 
 const commit = (message) => {
-    let commitCmd = "git commit -m " + message.trim()
-    const output = syncTerminal(commitCmd);
-    return output
-}
+  const command = 'git commit -m ' + message.trim();
+  const { stdout, stderr } = await asyncTerminal(command);
+  if (stderr) {
+    const error = stderr.toString();
+    console.error(error);
+    return APIResponse(error, true);
+  }
+  const output = stdout.toString();
+  return APIResponse(output);
+};
 
-module.exports = commit
+module.exports = commit;
