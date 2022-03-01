@@ -1,5 +1,6 @@
 const { syncTerminal, getCurrentPlatform } = require('../terminal');
 const { homedir, hostname } = require('os');
+const { APIResponse } = require('../../utils');
 /**
  * Generates SSH Key pair
  * @returns {Object}
@@ -24,11 +25,9 @@ const sshGenerate = () => {
         const output = syncTerminal(cmd);
       });
     }
-    return { message: 'ssh created and added' };
+    return APIResponse('ssh created and added');
   } catch (error) {
-    return {
-      message: 'error',
-    };
+    return APIResponse(error.toString(), true);
   }
 };
 
