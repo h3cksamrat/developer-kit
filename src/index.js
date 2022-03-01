@@ -141,10 +141,10 @@ const activeSubMenu = (event) => {
 };
 
 const path = require('path');
-const { sshSetup } = require(path.join(__dirname, '/js/ssh'));
+const { sshController } = require(path.join(__dirname, '/controllers/'));
 
 const controlSSH = () => {
   const genSSH = document.getElementById('clipBoard');
-  const publicKey = sshSetup();
+  const publicKey = sshController.setupSSH();
   genSSH.innerHTML = publicKey;
 };
