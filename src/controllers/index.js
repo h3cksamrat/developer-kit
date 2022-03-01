@@ -1,0 +1,1 @@
+module.exports.sshController = require("../controllers/ssh.controller")
