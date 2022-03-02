@@ -174,7 +174,27 @@
   </div>
   <div id="commit" class="tabcontent">
     <h3>Commit</h3>
-    <p>This is container for commit/</p>
+    <p class="menuDesc">Commit you git repository within a single click.</p>
+    <div class="commitCont">
+      <div class="descCont">
+        The git commit command captures a snapshot of the project's currently staged changes. Committed snapshots can be thought of as “safe” versions of a project.
+      </div>
+      <div class="commitInputs">
+        <form>
+          <input type="text" class="formInput" placeholder="Your commit message here.">
+          <div class="dropdown">
+            <button class="btn recentPathDrop dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+              Select the repository path
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+              <li><a class="dropdown-item" href="#">Path I</a></li>
+              <li><a class="dropdown-item" href="#">Path II</a></li>
+              <li><a class="dropdown-item" href="#">Path III</a></li>
+            </ul>
+          </div>
+          <button type="submit" class="commitActionBtn">Commit the Repository</button>
+        </form>
+      </div>
   </div>
 </body>
 
