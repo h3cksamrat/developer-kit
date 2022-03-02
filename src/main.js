@@ -1,4 +1,4 @@
-const { app, BrowserWindow, ipcMain } = require('electron');
+const { app, BrowserWindow, ipcMain, dialog } = require('electron');
 const path = require('path');
 const ipc = ipcMain;
 
@@ -19,7 +19,7 @@ const createWindow = () => {
     webPreferences: {
       // can work with nodejs modules
       nodeIntegration: true,
-      contextIsolation: false,
+      contextIsolation: false
     },
   });
 
@@ -65,6 +65,10 @@ const createWindow = () => {
     mainWindow.maximize();
   })
 
+  ipc.on('selectFolder', async () => {
+    const dir = await dialog.showOpenDialog({properties: ['openDirectory'] })
+    return dir
+  })
 
 };
 

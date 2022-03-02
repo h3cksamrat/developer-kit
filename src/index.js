@@ -1,4 +1,5 @@
 // script for index.html
+
 const theMaximize = document.getElementById("mainHeroImg");
 const theHead = document.getElementById("topHead");
 const theCol = document.getElementById("leftColumn");
@@ -148,3 +149,42 @@ const controlSSH = () => {
   const publicKey = sshController.setupSSH();
   genSSH.innerHTML = publicKey;
 };
+
+const fs = require('fs');
+// Importing dialog module using remote
+  
+var save = document.getElementById('save');
+  
+save.addEventListener('click', async (event) => {
+    // Resolves to a Promise<Object>
+    const dir = await ipc.send('selectFolder');
+
+    // dialog.showSaveDialog({
+    //     title: 'Select the File Path to save',
+    //     defaultPath: path.join(__dirname, '../sample.txt'),
+    //     // defaultPath: path.join(__dirname, '../assets/'),
+    //     buttonLabel: 'Save',
+    //     // Restricting the user to only Text Files.
+    //     filters: [
+    //         {
+    //             name: 'Text Files',
+    //             extensions: ['txt', 'docx']
+    //         }, ],
+    //     properties: []
+    // }).then(file => {
+    //     // Stating whether dialog operation was cancelled or not.
+    //     console.log(file.canceled);
+    //     if (!file.canceled) {
+    //         console.log(file.filePath.toString());
+              
+    //         // Creating and Writing to the sample.txt file
+    //         fs.writeFile(file.filePath.toString(), 
+    //                      'This is a Sample File', function (err) {
+    //             if (err) throw err;
+    //             console.log('Saved!');
+    //         });
+    //     }
+    // }).catch(err => {
+    //     console.log(err)
+    // });
+});

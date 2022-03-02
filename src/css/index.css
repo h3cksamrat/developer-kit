@@ -398,7 +398,7 @@ a:focus, a:hover{
   margin-top: 30px;
 }
 
-.sshActionBtn{
+.sshActionBtn, .cloneActionBtn{
   color: white;
   background-color: #2ad9a6;
   width: 100%;
@@ -466,4 +466,8 @@ a:focus, a:hover{
   outline: none;
   border: none;
   width: 100%;
+}
+
+.cloneActionBtn{
+  margin-top: 10px;
 }
