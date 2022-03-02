@@ -364,6 +364,7 @@ a:focus, a:hover{
   padding: 6px 12px;
   margin-left: 320px; 
   border-top: none;
+  height: 100vh;
 }
 
 .submenu:focus{
@@ -377,7 +378,7 @@ a:focus, a:hover{
   margin-top: -2px;
 }
 
-.sshCont, .cloneCont{
+.sshCont, .cloneCont, .commitCont{
   margin-top: 20px;
   width: 85%;
 }
@@ -398,7 +399,7 @@ a:focus, a:hover{
   margin-top: 30px;
 }
 
-.sshActionBtn, .cloneActionBtn{
+.sshActionBtn, .cloneActionBtn, .commitActionBtn{
   color: white;
   background-color: #2ad9a6;
   width: 100%;
@@ -453,11 +454,11 @@ a:focus, a:hover{
   background-color: #1f1f25;
 }
 
-.cloneInputs{
+.cloneInputs, .commitInputs{
   margin-top: 20px;
 }
 
-.cloneInputs .formInput{
+.formInput{
   color: #90909a;
   padding: 18px 25px;
   border-radius: 10px;
@@ -468,6 +469,40 @@ a:focus, a:hover{
   width: 100%;
 }
 
-.cloneActionBtn{
+.cloneActionBtn, .commitActionBtn{
   margin-top: 10px;
+}
+
+
+.recentPathDrop{
+  width: 100% !important;
+  color: #90909a !important;
+  padding: 18px 25px !important;
+  border-radius: 10px !important;
+  background-color: #1f1f25 !important;
+  margin-top: 10px !important;
+  font-size: inherit !important;
+  text-align: left !important;
+  outline: none !important;
+  border: none !important;
+}
+
+.dropdown-toggle::after{
+  float: right !important;
+  margin-top: 10px !important;
+}
+
+.dropdown-menu{
+  background-color: #3b3b42 !important;
+  width: 100% !important;
+}
+
+.dropdown-item{
+  background-color: #3b3b42 !important;
+  color:white !important;
+  font-size: 0.9rem !important;
+}
+
+.dropdown-item:hover{
+  background-color: #606067 !important;
 }
