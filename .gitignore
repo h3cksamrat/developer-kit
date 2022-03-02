@@ -96,3 +96,6 @@ package-lock.json
 
 # vscode
 .vscode
+
+#database
+src/db/db.json
