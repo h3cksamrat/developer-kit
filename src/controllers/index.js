@@ -1,1 +1,2 @@
-module.exports.sshController = require("../controllers/ssh.controller")
+module.exports.sshController = require('./ssh.controller');
+module.exports.gitController = require('./git.controller');
