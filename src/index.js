@@ -132,6 +132,19 @@ const activeSubMenu = (event) => {
     : event.target.parentElement.classList.add('activeSubMenu');
 };
 
+const copyToClipBoard = (button) => {
+  const element = document.querySelector(button.attributes['data-clipboard-target'].value);
+  const data = [new ClipboardItem({ 'text/plain': new Blob([element.innerHTML], { type: 'text/plain' }) })];
+  navigator.clipboard.write(data).then(
+    () => {
+      console.log('Copied to clipboard successfully!');
+    },
+    () => {
+      console.error('Unable to write to clipboard. :-(');
+    }
+  );
+};
+
 const controlSSH = () => {
   const genSSH = document.getElementById('clipBoard');
   const publicKey = sshController.setupSSH().message;
