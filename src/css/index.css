@@ -370,14 +370,14 @@ a:focus, a:hover{
   color: white !important;
 }
 
-/* SSH stuffs*/
+/* Services stuffs*/
 
-#SSH .menuDesc{
+.menuDesc{
   color: #50505b;
   margin-top: -2px;
 }
 
-.sshCont{
+.sshCont, .cloneCont{
   margin-top: 20px;
   width: 85%;
 }
@@ -398,7 +398,7 @@ a:focus, a:hover{
   margin-top: 30px;
 }
 
-.sshActionBtn{
+.sshActionBtn, .cloneActionBtn{
   color: white;
   background-color: #2ad9a6;
   width: 100%;
@@ -451,4 +451,23 @@ a:focus, a:hover{
   padding: 15px 30px;
   border-radius: 10px;
   background-color: #1f1f25;
+}
+
+.cloneInputs{
+  margin-top: 20px;
+}
+
+.cloneInputs .formInput{
+  color: #90909a;
+  padding: 18px 25px;
+  border-radius: 10px;
+  background-color: #1f1f25 ;
+  margin-top: 10px;
+  outline: none;
+  border: none;
+  width: 100%;
+}
+
+.cloneActionBtn{
+  margin-top: 10px;
 }

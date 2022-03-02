@@ -1,4 +1,6 @@
-// script for index.html
+const path = require('path');
+const { sshController } = require(path.join(__dirname, '/controllers/'));
+
 const theMaximize = document.getElementById("mainHeroImg");
 const theHead = document.getElementById("topHead");
 const theCol = document.getElementById("leftColumn");
@@ -7,6 +9,13 @@ const cardPadding = document.getElementById("cardPadding");
 const cardPadding2 = document.getElementById("cardPadding2");
 const cardPadding3= document.getElementById("cardPadding3");
 const sidebar = document.getElementsByClassName("sidebarMenus");
+const dropdownBtns = document.getElementsByClassName(dropdownBtnsClass);
+
+const dropdownBtnsClass = "dropdownBtn";
+const searchInputId = "myInput";
+const sideBarUlId = "sidenav__ul";
+const dropdownGroupClass = "dropdownGroup";
+const subDropdownClass = "dropdown-container";
 
 ipc.on('isMaximized', ()=>{
     theHead.style.fontSize = "3rem";
@@ -47,15 +56,7 @@ ipc.on('isRestored', ()=>{
     sidebar.style.width = "280px";
 });
 
-const dropdownBtnsClass = "dropdownBtn";
-const searchInputId = "myInput";
-const sideBarUlId = "sidenav__ul";
-const dropdownGroupClass = "dropdownGroup";
-const subDropdownClass = "dropdown-container";
-
-const dropdownBtns = document.getElementsByClassName(dropdownBtnsClass);
-
-Array.from(dropdownBtns).map((button) => {
+Array.from(dropdownBtns).forEach((button) => {
   button.addEventListener("click", (event) => {
     event.target.classList.toggle("active");
     const dropdownContent = event.target.parentElement.querySelector(
@@ -66,7 +67,7 @@ Array.from(dropdownBtns).map((button) => {
   });
 });
 
-function searchServices() {
+const searchServices = () => {
   let input = document.getElementById(searchInputId);
   let ul = document.getElementById(sideBarUlId);
   let dropdownGroups = ul.getElementsByClassName(dropdownGroupClass);
@@ -74,7 +75,7 @@ function searchServices() {
   let filter = input.value.toUpperCase();
 
   if (!filter) {
-    Array.from(dropdownBtns).map((button) => {
+    Array.from(dropdownBtns).forEach((button) => {
       button.style.display = "";
       const dropdownContent = button.parentElement.querySelector(
         "." + subDropdownClass
@@ -83,10 +84,10 @@ function searchServices() {
     });
   }
 
-  Array.from(dropdownGroups).map((dropdownGroup) => {
+  Array.from(dropdownGroups).forEach((dropdownGroup) => {
     let subMenus = dropdownGroup.querySelectorAll("a");
 
-    Array.from(subMenus).map((a) => {
+    Array.from(subMenus).forEach((a) => {
       if (!filter) {
         a.style.display = "";
         a.classList.remove("subMenu");
@@ -100,7 +101,7 @@ function searchServices() {
     });
 
     if (!filter) return;
-    Array.from(dropdownBtns).map((button) => {
+    Array.from(dropdownBtns).forEach((button) => {
       button.style.display = "none";
       button.classList.remove("active");
       const dropdownContent = button.parentElement.querySelector(
@@ -112,12 +113,12 @@ function searchServices() {
 }
 
 
-function hideServMain(){
+const hideServMain = () => {
   let mainElement = document.getElementById("mainSecDiv");
   mainElement.style.display = "none";
 }
 
-function subMenus(evt, cityName) {
+const subMenus = (evt, cityName) => {
   var i, tabcontent;
 
   tabcontent = document.getElementsByClassName("tabcontent");
@@ -128,10 +129,11 @@ function subMenus(evt, cityName) {
   document.getElementById(cityName).style.display = "block";
   hideServMain();
 }
+
 const activeSubMenu = (event) => {
   const subMenus = document.getElementsByClassName('tablinks');
   if (event.target.classList.contains('activeSubMenu')) return;
-  Array.from(subMenus).map((subMenu) => {
+  Array.from(subMenus).forEach((subMenu) => {
     subMenu.classList.remove('activeSubMenu');
   });
 
@@ -140,11 +142,13 @@ const activeSubMenu = (event) => {
     : event.target.parentElement.classList.add('activeSubMenu');
 };
 
-const path = require('path');
-const { sshController } = require(path.join(__dirname, '/controllers/'));
-
 const controlSSH = () => {
   const genSSH = document.getElementById('clipBoard');
-  const publicKey = sshController.setupSSH();
+  const publicKey = sshController.setupSSH().message;
   genSSH.innerHTML = publicKey;
 };
+  
+const save = document.getElementById('save'); 
+save.addEventListener('click', async (event) => {
+    // TODO: Dialog Opening
+});
