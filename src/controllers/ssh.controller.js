@@ -1,10 +1,10 @@
-const { sshGeneration, checkSSH, getPublicKey } = require('../services/ssh');
+const { sshService } = require('../services/');
 
 const setupSSH = () => {
-  if (!checkSSH().isPresent) {
-    sshGeneration();
+  if (!sshService.checkSSH().isPresent) {
+    sshService.sshGeneration();
   }
-  return getPublicKey();
+  return sshService.getPublicKey();
 };
 
 module.exports = {
