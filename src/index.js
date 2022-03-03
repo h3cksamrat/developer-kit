@@ -1,5 +1,5 @@
 const path = require('path');
-const { sshController } = require(path.join(__dirname, '/controllers/'));
+const { sshController, fileController } = require(path.join(__dirname, '/controllers/'));
 
 const dropdownBtnsClass = 'dropdownBtn';
 const searchInputId = 'myInput';
@@ -151,9 +151,21 @@ const controlSSH = () => {
   genSSH.innerHTML = publicKey;
 };
 
-const save = document.getElementById('save');
-save.addEventListener('click', async (event) => {
-  // TODO: Dialog Opening
-});
+const getThePath = async () => {
+  const paths = await fileController.getRepoPath();
+  const dropdownEl = document.getElementById('path-dropdown');
+  paths.forEach((path) => {
+    const li = document.createElement('li');
+    li.innerHTML = `<a class="dropdown-item" href="#">${path}</a>`;
+    dropdownEl.appendChild(li);
+  });
+};
 
-
+const pathButtonEl = document.getElementById('dropdownMenuButton1');
+pathButtonEl.addEventListener(
+  'click',
+  () => {
+    getThePath();
+  },
+  { once: true }
+);

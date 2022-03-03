@@ -34,7 +34,6 @@ class DB {
   async read() {
     const data = await this.adapter.read();
     this.data = data;
-    console.log(this.data);
   }
 
   async write() {
