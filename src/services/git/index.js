@@ -4,3 +4,4 @@ module.exports.push = require('./push.service');
 module.exports.clone = require('./clone.service');
 module.exports.checkout = require('./checkout.service');
 module.exports.branch = require('./branch.service');
+module.exports.stage = require('./stage.service');

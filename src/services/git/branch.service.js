@@ -97,6 +97,19 @@ const mergeBranches = async (mergeTo, mergeFrom) => {
   return APIResponse('Branch Merged');
 };
 
+const setUpStream = (branch, remote) => {
+  // recognizes for git pull
+  const command = `git branch --set-upstream-to=${remote}/${branch}`;
+  const { stdout, stderr } = await asyncTerminal(command);
+  if (stderr) {
+    const error = stderr.toString();
+    console.error(error);
+    return APIResponse(error, true);
+  }
+  const output = stdout.toString();
+  return APIResponse(output);
+};
+
 module.exports = {
   getAllBranches,
   getCurrentBranch,
@@ -104,4 +117,5 @@ module.exports = {
   updateBranchName,
   deleteBranch,
   mergeBranches,
+  setUpStream,
 };
