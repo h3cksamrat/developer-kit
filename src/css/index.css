@@ -362,7 +362,7 @@ a:focus, a:hover{
 .tabcontent {
   display: none;
   padding: 6px 12px;
-  margin-left: 320px; 
+  margin: 0 0 0 320px;
   border-top: none;
   height: 100vh;
 }
@@ -475,7 +475,6 @@ a:focus, a:hover{
 
 
 .recentPathDrop{
-  width: 100% !important;
   color: #90909a !important;
   padding: 18px 25px !important;
   border-radius: 10px !important;
@@ -505,4 +504,14 @@ a:focus, a:hover{
 
 .dropdown-item:hover{
   background-color: #606067 !important;
+}
+
+.dropdownCont{
+  display: inline;
+  margin-right: 100px;
+  float:  right;
+}
+
+.tabcontent h3{
+  display: inline-block;
 }
