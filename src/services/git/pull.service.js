@@ -1,7 +1,7 @@
 const { APIResponse } = require('../../utils');
 const { asyncTerminal } = require('../terminal');
 
-const pull = ({ branch = 'main', remote = 'origin' }) => {
+const pull = async({ branch = 'main', remote = 'origin' }) => {
   const command = `git pull ${remote} ${branch}`;
   const { stdout, stderr } = await asyncTerminal(command);
   if (stderr) {

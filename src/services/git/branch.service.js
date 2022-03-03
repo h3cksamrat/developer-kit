@@ -97,7 +97,7 @@ const mergeBranches = async (mergeTo, mergeFrom) => {
   return APIResponse('Branch Merged');
 };
 
-const setUpStream = (branch, remote) => {
+const setUpStream = async (branch, remote) => {
   // recognizes for git pull
   const command = `git branch --set-upstream-to=${remote}/${branch}`;
   const { stdout, stderr } = await asyncTerminal(command);

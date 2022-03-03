@@ -10,7 +10,7 @@ const { asyncTerminal } = require('../terminal');
  * @param {Boolean} pushOptions.force - force push
  * @returns {String} - git push output
  */
-const push = (
+const push = async (
   pushInfo = {
     branch: 'main',
     remoteUrl: 'origin',
