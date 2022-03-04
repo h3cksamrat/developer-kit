@@ -13,7 +13,6 @@ const addRecentGitRepos = async (repoPath) => {
     recentGitReposPath.unshift(repoPath);
   }
   await db.write();
-  console.log(recentGitReposPath);
 };
 
 const getRecentGitRepos = async (length = 5) => {

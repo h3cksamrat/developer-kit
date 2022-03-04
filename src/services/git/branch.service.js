@@ -19,8 +19,8 @@ const getAllBranches = async (repoPath, optns = { remote: false, currentIndicati
   return APIResponse(output);
 };
 
-const getCurrentBranch = async () => {
-  const command = 'git branch --show-current';
+const getCurrentBranch = async (repoPath) => {
+  const command = `cd ${repoPath} && ` + 'git branch --show-current';
 
   const { stdout, stderr } = await asyncTerminal(command);
   if (stderr) {
@@ -33,10 +33,10 @@ const getCurrentBranch = async () => {
   return APIResponse(output);
 };
 
-const createBranch = async (branch) => {
+const createBranch = async (repoPath, branch) => {
   branch = branch.trim();
   if (spaceInBetween(branch)) return APIResponse('Invalid Branch Name', true);
-  const command = `git branch ${branch}`;
+  const command = `cd ${repoPath} && ` + `git branch ${branch}`;
   const { stdout, stderr } = await asyncTerminal(command);
   if (stderr) {
     const error = stderr.toString();
@@ -46,11 +46,11 @@ const createBranch = async (branch) => {
   return APIResponse(`${branch} created`);
 };
 
-const updateBranchName = async (oldBranchName, newBranchName) => {
+const updateBranchName = async (repoPath, oldBranchName, newBranchName) => {
   oldBranchName = oldBranchName.trim();
   newBranchName = newBranchName.trim();
   if (spaceInBetween(oldBranchName) || spaceInBetween(newBranchName)) return APIResponse('Invalid Branch Name', true);
-  const command = `git branch -m ${oldBranchName} ${newBranchName}`;
+  const command = `cd ${repoPath} && ` + `git branch -m ${oldBranchName} ${newBranchName}`;
   const { stdout, stderr } = await asyncTerminal(command);
   if (stderr) {
     const error = stderr.toString();
@@ -60,10 +60,10 @@ const updateBranchName = async (oldBranchName, newBranchName) => {
   return APIResponse(`${oldBranchName} renamed to ${newBranchName}`);
 };
 
-const deleteBranch = async (branch, force = false) => {
+const deleteBranch = async (repoPath, branch, force = false) => {
   branch = branch.trim();
   if (spaceInBetween(branch)) return APIResponse('Invalid Branch Name', true);
-  const command = force ? `git branch -D ${branch}` : `git branch -d ${branch}`;
+  const command = `cd ${repoPath} && ` + (force ? `git branch -D ${branch}` : `git branch -d ${branch}`);
   const { stdout, stderr } = await asyncTerminal(command);
   if (stderr) {
     const error = stderr.toString();
@@ -74,14 +74,14 @@ const deleteBranch = async (branch, force = false) => {
   return APIResponse(output);
 };
 
-const mergeBranches = async (mergeTo, mergeFrom) => {
+const mergeBranches = async (repoPath, mergeTo, mergeFrom) => {
   if (spaceInBetween(mergeTo) || spaceInBetween(mergeFrom)) return APIResponse('Invalid Branch Name', true);
   const localBranches = (await getAllBranches()).message;
   const remoteBranches = (await getAllBranches({ remote: true })).message;
   const allBranches = [...localBranches, ...remoteBranches];
   if (allBranches.indexOf(mergeFrom) === -1 || allBranches.indexOf(mergeTo) === -1)
     return APIResponse('No such branch', true);
-  const commands = [`git checkout ${mergeTo}`, `git merge ${mergeFrom}`];
+  const commands = [`cd ${repoPath} && ` + `git checkout ${mergeTo}`, `cd ${repoPath} && ` + `git merge ${mergeFrom}`];
   try {
     commands.map((cmd, index) => {
       try {
@@ -97,9 +97,9 @@ const mergeBranches = async (mergeTo, mergeFrom) => {
   return APIResponse('Branch Merged');
 };
 
-const setUpStream = async (branch, remote) => {
+const setUpStream = async (repoPath, branch, remote) => {
   // recognizes for git pull or push
-  const command = `git branch --set-upstream-to=${remote}/${branch}`;
+  const command = `cd ${repoPath} && ` + `git branch --set-upstream-to=${remote}/${branch}`;
   const { stdout, stderr } = await asyncTerminal(command);
   if (stderr) {
     const error = stderr.toString();
