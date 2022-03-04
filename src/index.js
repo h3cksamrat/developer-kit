@@ -108,15 +108,13 @@ const hideServMain = () => {
   mainElement.style.display = 'none';
 };
 
-const subMenus = (evt, cityName) => {
-  var i, tabcontent;
+const subMenus = (evt, subMenuName) => {
+  const tabcontents = document.getElementsByClassName('tabcontent');
+  Array.from(tabcontents).forEach((tabcontent) => {
+    tabcontent.style.display = 'none';
+  });
 
-  tabcontent = document.getElementsByClassName('tabcontent');
-  for (i = 0; i < tabcontent.length; i++) {
-    tabcontent[i].style.display = 'none';
-  }
-
-  document.getElementById(cityName).style.display = 'block';
+  document.getElementById(subMenuName).style.display = 'block';
   hideServMain();
 };
 
@@ -166,6 +164,22 @@ pathButtonEl.addEventListener(
   'click',
   () => {
     getThePath();
+  },
+  { once: true }
+);
+
+const commitTheRepo = async (message) => {
+  const cMsg = document.getElementById('commitMsg');
+  message = cMsg.value;
+  const commit = await commitController.commitRepo();
+  console.log(commit);
+};
+
+const comBtn = document.getElementById('commitBtn');
+comBtn.addEventListener(
+  'click',
+  () => {
+    commitTheRepo();
   },
   { once: true }
 );
