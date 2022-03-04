@@ -86,8 +86,6 @@ const restoreFile = async (file, staged = true) => {
   return APIResponse(output);
 };
 
-status().then((data) => console.log(data));
-
 module.exports = {
   stageFile,
   restoreFile,
