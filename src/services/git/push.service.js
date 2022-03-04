@@ -11,13 +11,14 @@ const { asyncTerminal } = require('../terminal');
  * @returns {String} - git push output
  */
 const push = async (
+  repoPath,
   pushInfo = {
     branch: 'main',
     remoteUrl: 'origin',
   },
   pushOptions = {}
 ) => {
-  let pushCmd = `git push ${pushInfo.remoteUrl} ${pushInfo.branch}`;
+  let pushCmd = `cd ${repoPath} && ` + `git push ${pushInfo.remoteUrl} ${pushInfo.branch}`;
   if (pushOptions.force) {
     pushCmd += ' -f';
   }
