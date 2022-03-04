@@ -91,7 +91,7 @@
                   <a
                     id="submenu1"
                     class="tablinks"
-                    onclick="javascript:subMenus(event, 'SSH');javascript:activeSubMenu(event);"
+                    onclick="javascript:subMenus(event, 'SSH');javascript:hidePathCont();javascript:activeSubMenu(event);"
                     style="margin-top: 0px"
                   >
                     <p id="setupSubName">Setup SSH</p>
@@ -100,7 +100,7 @@
                   <a
                     id="submenu2"
                     class="tablinks"
-                    onclick="javascript:subMenus(event, 'clone');javascript:activeSubMenu(event);"
+                    onclick="javascript:subMenus(event, 'clone');javascript:showPathCont();javascript:activeSubMenu(event);"
                   >
                     <p id="setupSubName">Clone Repository</p>
                     <p id="setupMainName">Github</p>
@@ -108,7 +108,7 @@
                   <a
                     id="submenu3"
                     class="tablinks"
-                    onclick="javascript:subMenus(event, 'commit');javascript:activeSubMenu(event);"
+                    onclick="javascript:subMenus(event, 'commit');javascript:showPathCont();javascript:activeSubMenu(event);"
                   >
                     <p id="setupSubName">Commit Repository</p>
                     <p id="setupMainName">Github</p>
@@ -116,7 +116,7 @@
                   <a
                     id="submenu4"
                     class="tablinks"
-                    onclick="javascript:subMenus(event, 'push');javascript:activeSubMenu(event);"
+                    onclick="javascript:subMenus(event, 'push');javascript:showPathCont();javascript:activeSubMenu(event);"
                   >
                     <p id="setupSubName">Push Repository</p>
                     <p id="setupMainName">Github</p>
@@ -124,10 +124,19 @@
                   <a
                     id="submenu5"
                     class="tablinks"
-                    onclick="javascript:subMenus(event, 'pull');javascript:activeSubMenu(event);"
+                    onclick="javascript:subMenus(event, 'pull');javascript:showPathCont();javascript:activeSubMenu(event);"
                   >
                     <p id="setupSubName">Pull Repository</p>
                     <p id="setupMainName">Github</p>
+                  </a>
+                  <a
+                    id="submenu5"
+                    class="tablinks"
+                    onclick="javascript:subMenus(event, 'branch');javascript:showPathCont();javascript:activeSubMenu(event);"
+                  >
+                    <p id="setupSubName" style="display: inline;">Branch</p>
+                    <p id="smallSubs">(add, delete, merge, edit)</span>
+                    <p id="setupMainName" style="padding-top: 10px;">Github</p>
                   </a>
                 </div>
               </li>
@@ -135,6 +144,20 @@
               <li class="dropdownGroup"><a href="#">To be added</a></li>
               <li class="dropdownGroup"><a href="#">To be added</a></li>
             </ul>
+          </div>
+          <div class="filePathCont" id="filePatthy">
+            <div class="dropdown dropdownCont">
+              <button
+                class="btn recentPathDrop dropdown-toggle"
+                type="button"
+                id="dropdownMenuButton1"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Select the repository path
+              </button>
+              <ul class="dropdown-menu" id="path-dropdown" aria-labelledby="dropdownMenuButton1"></ul>
+            </div>
           </div>
           <div class="main" id="mainSecDiv">
             <div class="sectionTop">
@@ -185,6 +208,7 @@
         <div class="cloneInputs">
           <form>
             <input type="text" class="formInput" placeholder="Paste the HTTPS/SSH of the github repository." />
+            <button id="openFolder" class="formInput">Choose the folder you want to clone the repository to.</button>
             <button type="submit" class="cloneActionBtn">Clone the Repository</button>
           </form>
         </div>
@@ -192,18 +216,6 @@
     </div>
     <div id="commit" class="tabcontent">
       <h3>Commit</h3>
-      <div class="dropdown dropdownCont">
-        <button
-          class="btn recentPathDrop dropdown-toggle"
-          type="button"
-          id="dropdownMenuButton1"
-          data-bs-toggle="dropdown"
-          aria-expanded="false"
-        >
-          Select the repository path
-        </button>
-        <ul class="dropdown-menu" id="path-dropdown" aria-labelledby="dropdownMenuButton1"></ul>
-      </div>
       <p class="menuDesc">Commit you git repository within a single click.</p>
       <div class="commitCont">
         <div class="descCont">
@@ -220,18 +232,6 @@
     </div>
     <div id="push" class="tabcontent">
       <h3>Push Repository</h3>
-      <div class="dropdown dropdownCont">
-        <button
-          class="btn recentPathDrop dropdown-toggle"
-          type="button"
-          id="dropdownMenuButton1"
-          data-bs-toggle="dropdown"
-          aria-expanded="false"
-        >
-          Select the repository path
-        </button>
-        <ul class="dropdown-menu" id="path-dropdown" aria-labelledby="dropdownMenuButton1"></ul>
-      </div>
       <p class="menuDesc">Push any git repository within a single click.</p>
       <div class="pushCont">
         <div class="descCont">
@@ -249,18 +249,6 @@
     </div>
     <div id="pull" class="tabcontent">
       <h3>Pull Repository</h3>
-      <div class="dropdown dropdownCont">
-        <button
-          class="btn recentPathDrop dropdown-toggle"
-          type="button"
-          id="dropdownMenuButton1"
-          data-bs-toggle="dropdown"
-          aria-expanded="false"
-        >
-          Select the repository path
-        </button>
-        <ul class="dropdown-menu" id="path-dropdown" aria-labelledby="dropdownMenuButton1"></ul>
-      </div>
       <p class="menuDesc">Pull any git branch within a single click.</p>
       <div class="pullCont">
         <div class="descCont">
@@ -274,6 +262,86 @@
             <input type="text" class="formInput" placeholder="Enter the remote url" />
             <button type="submit" class="pushActionBtn" id="pushBtn">Pull the branch</button>
           </form>
+        </div>
+      </div>
+    </div>
+    <div id="branch" class="tabcontent">
+      <h3>Branch</h3>
+      <p class="menuDesc">Perform multiple branching feature in fraction of seconds.</p>
+      <div class="branchCont">
+        <div class="branchTabs">
+          <div class="tabs">
+            <input type="radio" name="tabs" id="tabone" checked="checked">
+            <label for="tabone">All Branches</label>
+            <div class="tab">
+              <h3>Available Branches</h3>
+              <p class="smallDesc">Below are all the available branches at the moment.</p>
+              <div class="branchList">
+                <ul class="branchLists">
+                  <li>Branch One</li>
+                  <li>Branch One</li>
+                  <li>Branch One</li>
+                  <li>Branch One</li>
+                  <li>Branch One</li>
+                  <li>Branch One</li>
+                </ul>
+              </div>
+            </div>
+            
+            <input type="radio" name="tabs" id="tabtwo">
+            <label for="tabtwo">Create</label>
+            <div class="tab">
+              <h3>Create Branch</h3>
+              <p class="smallDesc">Create a new branch with a single click.</p>
+              <div class="createBranchInputs">
+                <form>
+                  <input type="text" class="formInput" placeholder="Please enter the branch name." />
+                  <button type="submit" class="createBActionBtn" id="">Create the Branch</button>
+                </form>
+              </div>
+            </div>
+            
+            <input type="radio" name="tabs" id="tabthree">
+            <label for="tabthree">Delete</label>
+            <div class="tab">
+              <h3>Delete Branch</h3>
+              <p class="smallDesc">Delete a branch with a single click.</p>
+              <div class="deleteBranchInputs">
+                <form>
+                  <input type="text" class="formInput" placeholder="Please enter the branch name you want to delete." />
+                  <button type="submit" class="deleteBActionBtn" id="">Create the Branch</button>
+                </form>
+              </div>
+            </div>
+            
+            <input type="radio" name="tabs" id="tabfour">
+            <label for="tabfour">Merge</label>
+            <div class="tab">
+              <h3>Merge Branch</h3>
+              <p class="smallDesc">Merge one branch with another in fraction of seconds.</p>
+              <div class="deleteBranchInputs">
+                <form>
+                  <input type="text" class="formInput" placeholder="Please enter the name of the base branch." />
+                  <input type="text" class="formInput" placeholder="Please enter the name of the branch you want to merge." />
+                  <button type="submit" class="deleteBActionBtn" id="">Merge the Branch</button>
+                </form>
+              </div>
+            </div>
+
+            <input type="radio" name="tabs" id="tabfive">
+            <label for="tabfive">Edit</label>
+            <div class="tab">
+              <h3>Edit Branch Name</h3>
+              <p class="smallDesc">Edit name of any branch with a single click.</p>
+              <div class="deleteBranchInputs">
+                <form>
+                  <input type="text" class="formInput" placeholder="Please enter the name of the current branch." />
+                  <input type="text" class="formInput" placeholder="Please enter the name you want to change it into." />
+                  <button type="submit" class="deleteBActionBtn" id="">Merge the Branch</button>
+                </form>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

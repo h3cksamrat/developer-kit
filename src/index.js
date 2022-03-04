@@ -18,7 +18,6 @@ const sidebar = document.getElementsByClassName('sidebarMenus');
 const dropdownBtns = document.getElementsByClassName(dropdownBtnsClass);
 
 ipc.on('isMaximized', () => {
-  theHead.style.fontSize = '3rem';
   recHead.style.marginTop = '150px';
   theCol.style.marginTop = '57px';
   cardPadding.style.paddingTop = '35px';
@@ -149,6 +148,11 @@ const controlSSH = () => {
   genSSH.innerHTML = publicKey;
 };
 
+const removeThePath = () => {
+  const dropdownEl = document.getElementById('path-dropdown');
+  dropdownEl.innerHTML = '';
+};
+
 const getThePath = async () => {
   const paths = await fileController.getRepoPath();
   const dropdownEl = document.getElementById('path-dropdown');
@@ -168,6 +172,18 @@ pathButtonEl.addEventListener(
   { once: true }
 );
 
+const openFolder = document.getElementById('openFolder');
+openFolder.addEventListener('click', async (e) => {
+  e.preventDefault();
+  const filePath = await ipc.invoke('openFolder');
+  if (!filePath.canceled) {
+    const path = filePath.filePaths[0];
+    await fileController.setRepoPath(path);
+    removeThePath();
+    getThePath();
+  }
+});
+
 const commitTheRepo = async (message) => {
   const cMsg = document.getElementById('commitMsg');
   message = cMsg.value;
@@ -183,3 +199,13 @@ comBtn.addEventListener(
   },
   { once: true }
 );
+
+const hidePathCont = () => {
+  pathContEl = document.getElementById('filePatthy');
+  pathContEl.style.display = 'none';
+};
+
+const showPathCont = () => {
+  pathContEl = document.getElementById('filePatthy');
+  pathContEl.style.display = 'block';
+};
