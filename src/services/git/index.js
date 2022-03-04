@@ -6,3 +6,4 @@ module.exports.checkout = require('./checkout.service');
 module.exports.branch = require('./branch.service');
 module.exports.stage = require('./stage.service');
 module.exports.remote = require('./remote.service');
+module.exports.init = require('./init.service');
