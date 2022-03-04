@@ -1,8 +1,8 @@
 const { APIResponse, removeNullOrEmpty } = require('../../utils');
 const { asyncTerminal } = require('../terminal');
 
-const stageAll = async () => {
-  const command = 'git add .';
+const stageAll = async (repoPath) => {
+  const command = `cd ${repoPath} && ` + 'git add .';
   const { stdout, stderr } = await asyncTerminal(command);
   if (stderr) {
     const error = stderr.toString();
@@ -13,7 +13,7 @@ const stageAll = async () => {
   return APIResponse(output);
 };
 
-const status = async () => {
+const status = async (repoPath) => {
   const symbolAndMeaning = {
     '?': 'untracked',
     M: 'modified',
@@ -23,7 +23,7 @@ const status = async () => {
     C: 'copied',
     U: 'updated but unmerged',
   };
-  const command = 'git status -s';
+  const command = `cd ${repoPath} && ` + 'git status -s';
   const { stdout, stderr } = await asyncTerminal(command);
   if (stderr) {
     const error = stderr.toString();
@@ -62,8 +62,8 @@ const status = async () => {
   return APIResponse(fileStatus);
 };
 
-const stageFile = async (file) => {
-  const command = `git add ${file}`;
+const stageFile = async (repoPath, file) => {
+  const command = `cd ${repoPath} && ` + `git add ${file}`;
   const { stdout, stderr } = await asyncTerminal(command);
   if (stderr) {
     const error = stderr.toString();
@@ -74,8 +74,8 @@ const stageFile = async (file) => {
   return APIResponse(output);
 };
 
-const restoreFile = async (file, staged = true) => {
-  const command = staged ? `git restore --staged ${file}` : `git restore ${file}`;
+const restoreFile = async (repoPath, file, staged = true) => {
+  const command = `cd ${repoPath} && ` + (staged ? `git restore --staged ${file}` : `git restore ${file}`);
   const { stdout, stderr } = await asyncTerminal(command);
   if (stderr) {
     const error = stderr.toString();

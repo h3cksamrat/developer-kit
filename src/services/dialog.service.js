@@ -14,7 +14,7 @@ const showOpenDialog = async (options, BrowserWindow) => {
   } else {
     result = await dialog.showOpenDialog(options);
   }
-
+  result.filePaths = result.filePaths.map((filePath) => filePath.replace(/[\\/]+/g, '/'));
   return result;
 };
 

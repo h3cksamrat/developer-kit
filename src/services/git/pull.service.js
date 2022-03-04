@@ -1,8 +1,8 @@
 const { APIResponse } = require('../../utils');
 const { asyncTerminal } = require('../terminal');
 
-const pull = async({ branch = 'main', remote = 'origin' }) => {
-  const command = `git pull ${remote} ${branch}`;
+const pull = async (repoPath, { branch = 'main', remote = 'origin', inBranch }) => {
+  const command = `cd ${repoPath} && ` + (!inBranch ? '' : `git checkout ${inBranch} && `) + `git pull ${remote} ${branch}`;
   const { stdout, stderr } = await asyncTerminal(command);
   if (stderr) {
     const error = stderr.toString();
