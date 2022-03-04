@@ -151,6 +151,11 @@ const controlSSH = () => {
   genSSH.innerHTML = publicKey;
 };
 
+const removeThePath = () => {
+  const dropdownEl = document.getElementById('path-dropdown');
+  dropdownEl.innerHTML = '';
+};
+
 const getThePath = async () => {
   const paths = await fileController.getRepoPath();
   const dropdownEl = document.getElementById('path-dropdown');
@@ -169,3 +174,15 @@ pathButtonEl.addEventListener(
   },
   { once: true }
 );
+
+const openFolder = document.getElementById('openFolder');
+openFolder.addEventListener('click', async (e) => {
+  e.preventDefault();
+  const filePath = await ipc.invoke('openFolder');
+  if (!filePath.canceled) {
+    const path = filePath.filePaths[0];
+    await fileController.setRepoPath(path);
+    removeThePath();
+    getThePath();
+  }
+});
