@@ -18,7 +18,6 @@ const sidebar = document.getElementsByClassName('sidebarMenus');
 const dropdownBtns = document.getElementsByClassName(dropdownBtnsClass);
 
 ipc.on('isMaximized', () => {
-  theHead.style.fontSize = '3rem';
   recHead.style.marginTop = '150px';
   theCol.style.marginTop = '57px';
   cardPadding.style.paddingTop = '35px';
@@ -200,3 +199,13 @@ comBtn.addEventListener(
   },
   { once: true }
 );
+
+const hidePathCont = () => {
+  pathContEl = document.getElementById('filePatthy');
+  pathContEl.style.display = 'none';
+};
+
+const showPathCont = () => {
+  pathContEl = document.getElementById('filePatthy');
+  pathContEl.style.display = 'block';
+};
