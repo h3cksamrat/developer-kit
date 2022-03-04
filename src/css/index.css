@@ -378,9 +378,10 @@ a:focus, a:hover{
   margin-top: -2px;
 }
 
-.sshCont, .cloneCont, .commitCont{
+.sshCont, .cloneCont, .commitCont, .pushCont, .pullCont{
   margin-top: 20px;
   width: 85%;
+
 }
 
 .descCont{
@@ -399,7 +400,7 @@ a:focus, a:hover{
   margin-top: 30px;
 }
 
-.sshActionBtn, .cloneActionBtn, .commitActionBtn{
+.sshActionBtn, .cloneActionBtn, .commitActionBtn, .pushActionBtn{
   color: white;
   background-color: #2ad9a6;
   width: 100%;
@@ -469,7 +470,7 @@ a:focus, a:hover{
   width: 100%;
 }
 
-.cloneActionBtn, .commitActionBtn{
+.cloneActionBtn, .commitActionBtn, .pushActionBtn, .pullActionBtn{
   margin-top: 10px;
 }
 
