@@ -1,8 +1,8 @@
 const { removeNullOrEmpty, spaceInBetween, APIResponse } = require('../../utils');
 const { asyncTerminal, syncTerminal } = require('../terminal');
 
-const getAllBranches = async (optns = { remote: false, currentIndication: false }) => {
-  let command = optns.remote ? 'git branch -r' : 'git branch';
+const getAllBranches = async (repoPath, optns = { remote: false, currentIndication: false }) => {
+  let command = `cd ${repoPath} && ` + (optns.remote ? 'git branch -r' : 'git branch');
 
   const { stdout, stderr } = await asyncTerminal(command);
   if (stderr) {
@@ -98,7 +98,7 @@ const mergeBranches = async (mergeTo, mergeFrom) => {
 };
 
 const setUpStream = async (branch, remote) => {
-  // recognizes for git pull
+  // recognizes for git pull or push
   const command = `git branch --set-upstream-to=${remote}/${branch}`;
   const { stdout, stderr } = await asyncTerminal(command);
   if (stderr) {
