@@ -121,6 +121,14 @@
                     <p id="setupSubName">Push Repository</p>
                     <p id="setupMainName">Github</p>
                   </a>
+                  <a
+                    id="submenu5"
+                    class="tablinks"
+                    onclick="javascript:subMenus(event, 'pull');javascript:activeSubMenu(event);"
+                  >
+                    <p id="setupSubName">Pull Repository</p>
+                    <p id="setupMainName">Github</p>
+                  </a>
                 </div>
               </li>
               <li class="dropdownGroup"><a href="#">To be added</a></li>
@@ -212,6 +220,18 @@
     </div>
     <div id="push" class="tabcontent">
       <h3>Push Repository</h3>
+      <div class="dropdown dropdownCont">
+        <button
+          class="btn recentPathDrop dropdown-toggle"
+          type="button"
+          id="dropdownMenuButton1"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+        >
+          Select the repository path
+        </button>
+        <ul class="dropdown-menu" id="path-dropdown" aria-labelledby="dropdownMenuButton1"></ul>
+      </div>
       <p class="menuDesc">Push any git repository within a single click.</p>
       <div class="pushCont">
         <div class="descCont">
@@ -223,6 +243,36 @@
             <input type="text" class="formInput" placeholder="Please enter the branch you want to push." />
             <input type="text" class="formInput" placeholder="Enter the remote url (default: origin)" />
             <button type="submit" class="pushActionBtn" id="pushBtn">Commit the Repository</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div id="pull" class="tabcontent">
+      <h3>Pull Repository</h3>
+      <div class="dropdown dropdownCont">
+        <button
+          class="btn recentPathDrop dropdown-toggle"
+          type="button"
+          id="dropdownMenuButton1"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+        >
+          Select the repository path
+        </button>
+        <ul class="dropdown-menu" id="path-dropdown" aria-labelledby="dropdownMenuButton1"></ul>
+      </div>
+      <p class="menuDesc">Pull any git branch within a single click.</p>
+      <div class="pullCont">
+        <div class="descCont">
+          The git pull command is used to fetch and download content from a remote repository and immediately update the
+          local repository to match that content. Merging remote upstream changes into your local repository is a common task
+          in Git-based collaboration work flows.
+        </div>
+        <div class="pullInputs">
+          <form>
+            <input type="text" class="formInput" placeholder="Please enter the branch you want to pull." />
+            <input type="text" class="formInput" placeholder="Enter the remote url" />
+            <button type="submit" class="pushActionBtn" id="pushBtn">Pull the branch</button>
           </form>
         </div>
       </div>
