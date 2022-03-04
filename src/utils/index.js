@@ -14,9 +14,12 @@ const APIResponse = (message, error = false, extraResp = {}) => {
   return { message, error, ...extraResp };
 };
 
+const refactorPath = (path) => '"' + path + '"';
+
 module.exports = {
   isObjectEmpty,
   removeNullOrEmpty,
   spaceInBetween,
   APIResponse,
+  refactorPath,
 };
