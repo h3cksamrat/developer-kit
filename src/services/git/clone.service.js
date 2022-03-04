@@ -15,7 +15,7 @@ const clone = async (url, file_path) => {
     return APIResponse(error, true);
   }
   output = stdout.toString().split('\n');
-  return APIResponse(output[0] + ' completed');
+  return APIResponse('Completed');
 };
 
 module.exports = clone;
