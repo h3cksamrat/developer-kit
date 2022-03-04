@@ -1,5 +1,5 @@
 const path = require('path');
-const { sshController, fileController } = require(path.join(__dirname, '/controllers/'));
+const { sshController, fileController, gitController } = require(path.join(__dirname, '/controllers/'));
 
 const dropdownBtnsClass = 'dropdownBtn';
 const searchInputId = 'myInput';
@@ -172,33 +172,17 @@ pathButtonEl.addEventListener(
   { once: true }
 );
 
-const openFolder = document.getElementById('openFolder');
-openFolder.addEventListener('click', async (e) => {
-  e.preventDefault();
-  const filePath = await ipc.invoke('openFolder');
-  if (!filePath.canceled) {
-    const path = filePath.filePaths[0];
-    await fileController.setRepoPath(path);
-    removeThePath();
-    getThePath();
-  }
-});
-
-const commitTheRepo = async (message) => {
-  const cMsg = document.getElementById('commitMsg');
-  message = cMsg.value;
-  const commit = await commitController.commitRepo();
-  console.log(commit);
-};
-
-const comBtn = document.getElementById('commitBtn');
-comBtn.addEventListener(
-  'click',
-  () => {
-    commitTheRepo();
-  },
-  { once: true }
-);
+// const openFolder = document.getElementById('openFolder');
+// openFolder.addEventListener('click', async (e) => {
+//   e.preventDefault();
+//   const filePath = await ipc.invoke('openFolder');
+//   if (!filePath.canceled) {
+//     const path = filePath.filePaths[0];
+//     await fileController.setRepoPath(path);
+//     removeThePath();
+//     getThePath();
+//   }
+// });
 
 const hidePathCont = () => {
   pathContEl = document.getElementById('filePatthy');
@@ -208,4 +192,26 @@ const hidePathCont = () => {
 const showPathCont = () => {
   pathContEl = document.getElementById('filePatthy');
   pathContEl.style.display = 'block';
+};
+
+let cloneButtonVal = '';
+const cloneValue = async (e) => {
+  e.preventDefault();
+  const filePath = await ipc.invoke('openFolder');
+  if (!filePath.canceled) {
+    const path = filePath.filePaths[0];
+    cloneButtonVal = path;
+  }
+};
+
+const cloneTheRepo = async (e) => {
+  e.preventDefault();
+  const repoLink = document.getElementById('cloneRepoLink').value;
+  const filePath = cloneButtonVal;
+  if (filePath == '') {
+    console.log(filePath);
+    return;
+  }
+  const cloneOutput = await gitController.clone(filePath, repoLink);
+  console.log({ cloneOutput });
 };
