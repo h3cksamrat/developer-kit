@@ -312,6 +312,8 @@ img{
   margin-top: -7px;
 }
 
+
+
 .dropdown-container a{
    margin-top: -11px;
 }
@@ -378,7 +380,7 @@ a:focus, a:hover{
   margin-top: -2px;
 }
 
-.sshCont, .cloneCont, .commitCont, .pushCont, .pullCont{
+.sshCont, .cloneCont, .commitCont, .pushCont, .pullCont, .branchCont{
   margin-top: 20px;
   width: 85%;
 
@@ -400,7 +402,7 @@ a:focus, a:hover{
   margin-top: 30px;
 }
 
-.sshActionBtn, .cloneActionBtn, .commitActionBtn, .pushActionBtn{
+.sshActionBtn, .cloneActionBtn, .commitActionBtn, .pushActionBtn, .createBActionBtn, .deleteBActionBtn{
   color: white;
   background-color: #2ad9a6;
   width: 100%;
@@ -408,6 +410,7 @@ a:focus, a:hover{
   border-radius: 10px;
   border: none;
   outline: none;
+  margin-top: 10px;
 }
 
 .clipboardCont{
@@ -455,7 +458,7 @@ a:focus, a:hover{
   background-color: #1f1f25;
 }
 
-.cloneInputs, .commitInputs{
+.cloneInputs, .commitInputs, .pullInputs, .branchInputs, .pushInputs, .createBranchInputs, .deleteBranchInputs{
   margin-top: 20px;
 }
 
@@ -470,9 +473,6 @@ a:focus, a:hover{
   width: 100%;
 }
 
-.cloneActionBtn, .commitActionBtn, .pushActionBtn, .pullActionBtn{
-  margin-top: 10px;
-}
 
 
 .recentPathDrop{
@@ -515,4 +515,83 @@ a:focus, a:hover{
 
 .tabcontent h3{
   display: inline-block;
+}
+
+
+#smallSubs{
+  font-size: 0.7rem !important;
+  display: inline;
+  margin-left: 3px;
+  margin-bottom: 10px;
+}
+
+/**
+ * Tabs
+ */
+
+  .branchTabs{
+    margin-top: 10px;
+  }
+
+ .tabs {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.tabs label {
+  order: 1;
+  display: block;
+  padding: 0.75rem 2rem;
+  margin-right: 1.5rem;
+  cursor: pointer;
+  background: #2ad9a6;
+  border-radius: 5px;
+  font-weight: 400;
+}
+
+.tabs .tab {
+  order: 99;
+  flex-grow: 1;
+  width: 100%;
+  display: none;
+  padding: 1rem;
+}
+
+.tabs input[type=radio] {
+  display: none;
+}
+
+.tabs input[type=radio]:checked + label {
+  background: #2aa280;
+}
+
+.tabs input[type=radio]:checked + label + .tab {
+  display: block;
+}
+
+.branchList{
+  border-radius: 15px;
+  padding: 10px 0 8px 0;
+  list-style-type: none;
+}
+
+.branchLists{
+  list-style-type: none;
+}
+
+.branchLists li{
+  padding: 5px 10px;
+}
+
+.branchLists li:hover{
+  background-color: #52525b;
+  border-radius: 5px;
+}
+
+.smallDesc{
+  color: #50505b;
+}
+
+.filePathCont{
+  display: none;
 }
