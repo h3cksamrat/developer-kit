@@ -1,5 +1,6 @@
 const { app, BrowserWindow, ipcMain } = require('electron');
 const path = require('path');
+const { showOpenDialog } = require('./services/dialog.service');
 const ipc = ipcMain;
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
@@ -23,37 +24,39 @@ const createWindow = () => {
 
   mainWindow.loadFile(path.join(__dirname, 'index.html'));
   mainWindow.webContents.openDevTools();
-  
-  ipc.on('minimizeApp', ()=>{
+
+  ipc.on('minimizeApp', () => {
     mainWindow.minimize();
-  })
+  });
 
-  ipc.on('closeApp', ()=>{
+  ipc.on('closeApp', () => {
     mainWindow.close();
-  })
+  });
 
-  ipc.on('maximizeRestoreApp', ()=>{
-    if(mainWindow.isMaximized()){
-      console.log("Restored");
+  ipc.on('maximizeRestoreApp', () => {
+    if (mainWindow.isMaximized()) {
+      console.log('Restored');
       mainWindow.restore();
-    }
-    else{
+    } else {
       mainWindow.maximize();
     }
-  })
+  });
 
-  mainWindow.on('maximize', ()=>{
+  mainWindow.on('maximize', () => {
     mainWindow.webContents.send('isMaximized');
-  })
+  });
 
-  mainWindow.on('unmaximize', ()=>{
+  mainWindow.on('unmaximize', () => {
     mainWindow.webContents.send('isRestored');
-  })
+  });
 
-  ipc.on('maximizeApp', ()=>{
+  ipc.on('maximizeApp', () => {
     mainWindow.maximize();
-  })
+  });
 
+  ipc.handle('openFolder', async () => {
+    return await showOpenDialog({ title: 'Open Git Repo', properties: ['openDirectory', 'createDirectory'] }, mainWindow);
+  });
 };
 
 app.on('ready', createWindow);
