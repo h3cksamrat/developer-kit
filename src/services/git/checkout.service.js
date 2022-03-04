@@ -1,9 +1,9 @@
 const { APIResponse, spaceInBetween } = require('../../utils');
 const { asyncTerminal } = require('../terminal');
 
-const changeBranch = async (branch) => {
+const changeBranch = async (repoPath, branch) => {
   if (spaceInBetween(branch)) return APIResponse('Invalid Branch Name', true);
-  const command = `git checkout ${branch}`;
+  const command = `cd ${repoPath} && ` + `git checkout ${branch}`;
   const { stdout, stderr } = await asyncTerminal(command);
   if (stderr) {
     const error = stderr.toString();
@@ -15,9 +15,9 @@ const changeBranch = async (branch) => {
   return APIResponse('Something went wrong', true);
 };
 
-const createBranch = async (branch, parentBranch) => {
+const createBranch = async (repoPath, branch, parentBranch) => {
   if (spaceInBetween(branch) || spaceInBetween(parentBranch)) return APIResponse('Invalid Branch Name', true);
-  const command = `git checkout -b ${branch} ${parentBranch}`;
+  const command = `cd ${repoPath} && ` + `git checkout -b ${branch} ${parentBranch}`;
   const { stdout, stderr } = await asyncTerminal(command);
   if (stderr) {
     const error = stderr.toString();
