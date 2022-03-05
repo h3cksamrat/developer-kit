@@ -595,3 +595,19 @@ a:focus, a:hover{
 .filePathCont{
   display: none;
 }
+
+#successMsgCont{
+  display: none;
+}
+
+.successMsg{
+  background-color: #2ad9a6;
+  margin-top: 15px;
+  padding: 10px 25px;
+  border-radius: 7px;
+}
+
+.successMsg p{
+  margin-top: 6px;
+  text-align: center;
+}

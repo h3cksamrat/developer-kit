@@ -18,7 +18,6 @@ const sidebar = document.getElementsByClassName('sidebarMenus');
 const dropdownBtns = document.getElementsByClassName(dropdownBtnsClass);
 
 ipc.on('isMaximized', () => {
-  recHead.style.marginTop = '150px';
   theCol.style.marginTop = '57px';
   cardPadding.style.paddingTop = '35px';
   cardPadding.style.paddingBottom = '35px';
@@ -214,4 +213,6 @@ const cloneTheRepo = async (e) => {
   }
   const cloneOutput = await gitController.clone(filePath, repoLink);
   console.log({ cloneOutput });
+  const messageCont = document.getElementById('successMsgCont');
+  messageCont.style.display = 'block';
 };
