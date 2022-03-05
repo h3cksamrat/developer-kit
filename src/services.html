@@ -210,6 +210,11 @@
             <input type="text" id="cloneRepoLink" class="formInput" placeholder="Paste the HTTPS/SSH of the github repository." />
             <button id="" onclick="javascript:cloneValue(event);" class="formInput">Choose the folder you want to clone the repository to.</button>
             <button onclick="javascript:cloneTheRepo(event);" class="cloneActionBtn">Clone the Repository</button>
+            <div id="successMsgCont" >
+              <div class="successMsg">
+                <p>The repository has been succesfully cloned into desired path.</p>
+              </div>
+            </div>
           </form>
         </div>
       </div>
@@ -227,6 +232,7 @@
             <input type="text" class="formInput" placeholder="Your commit message here." id="commitMsg" />
             <button type="submit" class="commitActionBtn" id="commitBtn">Commit the Repository</button>
           </form>
+          
         </div>
       </div>
     </div>
