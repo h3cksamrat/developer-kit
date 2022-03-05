@@ -14,7 +14,6 @@ const clone = async (url, file_path) => {
     console.error(error);
     return APIResponse(error, true);
   }
-  return output;
   output = stdout.toString().split('\n');
   return APIResponse('Completed');
 };
